@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, TextInput, StyleSheet,ListView,AppRegistry} from 'react-native';
+import { Keyboard,  Text, View, TouchableOpacity, TextInput, StyleSheet,ListView,AppRegistry} from 'react-native';
 import Toast from 'react-native-simple-toast';
 
 var Sound = require('react-native-sound');
@@ -51,6 +51,7 @@ export default class issues extends Component {
         whoosh.play();
         Toast.show('No Issues found', Toast.LONG);
        }
+       Keyboard.dismiss()
        this.setState({
          names : ds.cloneWithRows(json)
        });
@@ -70,7 +71,7 @@ export default class issues extends Component {
            <View style = {styles.container2}>
               <TextInput style = {styles.input}
                  underlineColorAndroid = "transparent"
-                 placeholder = "Enter Repo ..."
+                 placeholder = "Enter Repository..."
                  placeholderTextColor = "#9a73ef"
                  autoCapitalize = "none"
                  onChangeText = {this.handleRepo}/>
@@ -98,6 +99,7 @@ export default class issues extends Component {
                        </View>}
                     />
            </View>
+
         </View>   
      )
   }
@@ -124,7 +126,8 @@ const styles = StyleSheet.create ({
    },
    
    input: {
-      height: 40,
+    fontSize: 16,
+      height: 50,
       flex:0.8,
       borderColor: '#7a42f4',
       borderWidth: 1
@@ -132,16 +135,22 @@ const styles = StyleSheet.create ({
    
    submitButton: {
       backgroundColor: '#7a42f4',
-      height: 40,
-      flex:0.2
+      height: 50,
+      flex:0.2,
+    justifyContent: 'center',
+    alignItems: 'center'
    },
    
    submitButtonText:{
+    fontWeight: "bold",
+      fontSize: 18,
       color: 'white',
      textAlign: 'center',
+
    },
    mainbox:{
       flex: 1,
+      marginBottom:50,
    }
 })
 
